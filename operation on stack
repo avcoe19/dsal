@@ -1,0 +1,97 @@
+Practical 2
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+struct Node {
+int data;
+struct Node *next;
+};
+struct Node *top = NULL;
+void push(int val) {
+struct Node *new_node = (struct Node*)malloc(sizeof(struct Node));
+new_node->data = val;
+new_node->next = top;
+top = new_node;
+}
+void pop() {
+if (top == NULL) {
+cout << "\nStack Underflow" << endl;
+} else {
+cout << "\nThe popped element is: " << top->data << endl;
+top = top->next;
+}
+}
+void peek() {
+if (top == NULL) {
+cout << "\nStack is empty";
+} else {
+cout << "\nTop element is: " << top->data << endl;
+}
+}
+void display() {
+struct Node *ptr;
+if (top == NULL) {
+cout << "\nStack is empty";
+} else {
+ptr = top;
+cout << "\nStack elements are: ";
+while (ptr != NULL) {
+cout << ptr->data << " ";
+ptr = ptr->next;
+}
+cout << endl;
+}
+}
+int main() {
+int ch, val;
+cout << "\n1. Push in stack";
+cout << "\n2. Pop from stack";
+cout << "\n3. Peek of Stack";
+cout << "\n4. Display Stack";
+cout << "\n5. Exit";
+do {
+cout << "\nEnter choice: ";
+cin >> ch;
+switch (ch) {
+case 1:
+cout << "\nEnter value to be pushed: ";
+cin >> val;
+push(val);
+break;
+case 2:
+pop();
+break;
+case 3:
+peek();
+break;
+case 4:
+display();
+break;
+case 5:
+cout << "\nExit";
+break;
+default:
+cout << "\nInvalid choice!";
+}
+} while (ch != 5);
+return 0;
+}
+
+
+
+Output:
+1. Push in stack
+2. Pop from stack
+3. Peek of Stack
+4. Display Stack
+5. Exit
+Enter choice: 1
+Enter value to be pushed: 45
+Enter choice: 1
+Enter value to be pushed: 12
+Enter choice: 2
+The popped element is: 12
+Enter choice: 4
+Stack elements are: 45
+Enter choice: 5
+Exit
