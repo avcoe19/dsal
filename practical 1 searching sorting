@@ -1,0 +1,153 @@
+Practical 1
+#include <iostream>
+#include <cstring>
+using namespace std;
+struct student {
+int id;
+char name[20];
+float cgpa;
+};
+
+void create(student s[20], int &n);
+void display(student s[20], int n);
+void search(student s[20], int n, int key);
+void bubble_sort(student s[20], int n);
+int main() {
+student s[20];
+int n = 0, ch, key;
+do {
+cout << "\n--- STUDENT DATABASE MENU ---\n";
+cout << "1. Create / Add Students\n";
+cout << "2. Display Students\n";
+cout << "3. Search Student by ID\n";
+cout << "4. Sort by CGPA (Bubble Sort)\n";
+cout << "0. Exit\n";
+cout << "Enter your choice: ";
+cin >> ch;
+switch (ch) {
+case 1:
+create(s, n);
+break;
+case 2:
+display(s, n);
+break;
+case 3:
+cout << "Enter ID to search: ";
+cin >> key;
+search(s, n, key);
+break;
+case 4:
+bubble_sort(s, n);
+cout << "Students sorted by CGPA successfully!\n";
+break;
+case 0:
+cout << "Exiting program...\n";
+break;
+default:
+cout << "Invalid choice!\n";
+}
+} while (ch != 0);
+return 0;
+}
+
+void create(student s[20], int &n) {
+cout << "Enter number of students to add: ";
+cin >> n;
+for (int i = 0; i < n; i++) {
+cout << "\nEnter details for student " << i + 1 << ":\n";
+cout << "ID: ";
+cin >> s[i].id;
+cout << "Name: ";
+cin >> s[i].name;
+cout << "CGPA: ";
+cin >> s[i].cgpa;
+}
+}
+
+void display(student s[20], int n) {
+cout << "\n--- STUDENT DETAILS ---\n";
+cout << "ID\tName\tCGPA\n";
+for (int i = 0; i < n; i++) {
+cout << s[i].id << "\t" << s[i].name << "\t" << s[i].cgpa << endl;
+}
+}
+
+void search(student s[20], int n, int key) {
+for (int i = 0; i < n; i++) {
+if (s[i].id == key) {
+cout << "\nStudent found:\n";
+cout << "ID: " << s[i].id << "\nName: " << s[i].name << "\nCGPA: "
+<< s[i].cgpa << endl;
+return;
+}
+}
+cout << "Student with ID " << key << " not found!\n";
+}
+
+void bubble_sort(student s[20], int n) {
+for (int i = 0; i < n - 1; i++) {
+for (int j = 0; j < n - i - 1; j++) {
+if (s[j].cgpa > s[j + 1].cgpa) {
+student temp = s[j];
+s[j] = s[j + 1];
+s[j + 1] = temp;
+}
+}
+}
+}
+Output:
+--- STUDENT DATABASE MENU ---
+1. Create / Add Students
+2. Display Students
+3. Search Student by ID
+4. Sort by CGPA (Bubble Sort)
+0. Exit
+Enter your choice: 1
+Enter number of students to add: 2
+Enter details for student 1:
+ID: 12
+Name: shata
+CGPA: 9.5
+Enter details for student 2:
+ID: 23
+Name: samruddhi
+CGPA: 9.6
+--- STUDENT DATABASE MENU ---
+1. Create / Add Students
+2. Display Students
+3. Search Student by ID
+4. Sort by CGPA (Bubble Sort)
+0. Exit
+Enter your choice: 2
+--- STUDENT DETAILS ---
+ID Name CGPA
+12 shata 9.5
+23 samruddhi 9.6
+--- STUDENT DATABASE MENU ---
+1. Create / Add Students
+2. Display Students
+3. Search Student by ID
+4. Sort by CGPA (Bubble Sort)
+0. Exit
+Enter your choice: 3
+Enter ID to search: 23
+Student found:
+ID: 23
+Name: samruddhi
+CGPA: 9.6
+--- STUDENT DATABASE MENU ---
+1. Create / Add Students
+2. Display Students
+3. Search Student by ID
+4. Sort by CGPA (Bubble Sort)
+0. Exit
+Enter your choice: 4
+Students sorted by CGPA successfully!
+--- STUDENT DATABASE MENU ---
+1. Create / Add Students
+2. Display Students
+3. Search Student by ID
+4. Sort by CGPA (Bubble Sort)
+0. Exit
+Enter your choice: 0
+Exiting program...
