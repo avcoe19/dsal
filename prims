@@ -1,6 +1,7 @@
+Practical 6
 # Prim's Algorithm in Python
 INF = 9999999
-# number of vertices in the graph
+# Number of vertices in the graph
 V = 5
 # Graph represented as an adjacency matrix
 G = [
@@ -33,4 +34,12 @@ print(f" {x} - {y} : {G[x][y]}")
 selected[y] = True
 no_edge += 1
 cost_tree += G[x][y]
-print(" Cost of minimal spanning tree is: ", cost_tree)
+print("\nCost of minimal spanning tree is:", cost_tree)
+
+Output:
+Edge : Weight
+0 - 4 : 1
+0 - 1 : 3
+1 - 2 : 2
+2 - 3 : 3
+Cost of minimal spanning tree is: 9
