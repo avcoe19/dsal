@@ -1,45 +1,44 @@
-Practical 9
+Practical 9 – Fractional Knapsack Problem
+
 # Fractional Knapsack Problem
+
 def fractional_knapsack(weights, profits, capacity):
-n = len(weights)
-ratio = [(profits[i] / weights[i], weights[i], profits[i]) for i in range(n)]
-# Sort by profit-to-weight ratio (descending)
-ratio.sort(reverse=True, key=lambda x: x[0])
-total_profit = 0
-remaining_capacity = capacity
-print("\nSelected Parcels:")
-for r, w, p in ratio:
-if remaining_capacity >= w:
-remaining_capacity -= w
-total_profit += p
-print(f"Weight: {w}, Profit: {p}, Taken: 100%")
-else:
-# Take fractional part
-fraction = remaining_capacity / w
-total_profit += p * fraction
-print(f"Weight: {w}, Profit: {p}, Taken: {fraction * 100:.2f}%")
-break # Truck is full
-return total_profit
+    n = len(weights)
+    ratio = [(profits[i] / weights[i], weights[i], profits[i]) for i in range(n)]
+
+    # Sort by profit-to-weight ratio (descending)
+    ratio.sort(reverse=True, key=lambda x: x[0])
+
+    total_profit = 0
+    remaining_capacity = capacity
+
+    print("\nSelected Parcels:")
+    for r, w, p in ratio:
+        if remaining_capacity >= w:
+            remaining_capacity -= w
+            total_profit += p
+            print(f"Weight: {w}, Profit: {p}, Taken: 100%")
+        else:
+            # Take fractional part
+            fraction = remaining_capacity / w
+            total_profit += p * fraction
+            print(f"Weight: {w}, Profit: {p}, Taken: {fraction * 100:.2f}%")
+            break  # Truck is full
+
+    return total_profit
+
+
 # --- User Input ---
 n = int(input("Enter number of parcels: "))
 weights = []
 profits = []
+
 for i in range(n):
-weights.append(float(input(f"Enter weight of parcel {i+1}: ")))
-profits.append(float(input(f"Enter profit of parcel {i+1}: ")))
+    weights.append(float(input(f"Enter weight of parcel {i+1}: ")))
+    profits.append(float(input(f"Enter profit of parcel {i+1}: ")))
+
 capacity = float(input("Enter truck capacity: "))
+
 # --- Calculate Maximum Profit ---
 max_profit = fractional_knapsack(weights, profits, capacity)
 print(f"\nMaximum Profit = {max_profit:.2f}")
-
-Output:
-Enter number of parcels: 2
-Enter weight of parcel 1: 12
-Enter profit of parcel 1: 23
-Enter weight of parcel 2: 14
-Enter profit of parcel 2: 15
-Enter truck capacity: 59
-Selected Parcels:
-Weight: 12.0, Profit: 23.0, Taken: 100%
-Weight: 14.0, Profit: 15.0, Taken: 100%
-Maximum Profit = 38.00
