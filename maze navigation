@@ -1,0 +1,29 @@
+Practical 10
+
+def naive_string_match(text, pattern):
+    n = len(text)
+    m = len(pattern)
+    found = False
+
+    print("\nPattern found at indices:", end=" ")
+
+    # Slide the pattern over text one by one
+    for i in range(n - m + 1):
+        match = True
+        for j in range(m):
+            if text[i + j] != pattern[j]:
+                match = False
+                break
+        if match:
+            print(i, end=" ")
+            found = True
+
+    if not found:
+        print("No match found!")
+
+
+# Main code
+text = input("Enter the text: ")
+pattern = input("Enter the pattern: ")
+
+naive_string_match(text, pattern)
